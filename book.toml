@@ -3,4 +3,25 @@ authors = ["Emanuel Lima"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Study Book"
+title = "Study Journal"
+description = "A book to organize my study notes."
+
+[rust]
+edition = "2021"
+
+[build]
+build-dir = "book"
+create-missing = true
+use-default-preprocessors = true
+extra-watch-dirs = []
+
+[output.html]
+default-theme = "rust"
+preferred-dark-theme = "ayu"
+mathjax-support = true
+git-repository-url = "https://github.com/emanuellima1/study-book"
+edit-url-template = "https://github.com/emanuellima1/study-book/edit/main/{path}"
+
+[output.html.playground]
+editable = true
+line-numbers = true

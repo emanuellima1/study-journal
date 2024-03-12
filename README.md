@@ -1,2 +1,3 @@
-# study-book
-Book to organize my study notes
+# The Study Journal
+
+A book to organize my study notes
