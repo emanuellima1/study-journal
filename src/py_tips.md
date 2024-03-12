@@ -4,7 +4,7 @@
 
 ### Project Layout
 
-![image](../img/dir.png)
+![image](img/dir.png)
 
 Avoid storing unit tests outside the package directory. These tests should be included in a subpackage of your software so that they aren’t automatically installed as a `tests` top-level module by setuptools (or some  other packaging library) by accident. By placing them in a subpackage, you ensure they can be installed and eventually used by other packages so users can build their own unit tests.
 

@@ -21,6 +21,7 @@ preferred-dark-theme = "ayu"
 mathjax-support = true
 git-repository-url = "https://github.com/emanuellima1/study-book"
 edit-url-template = "https://github.com/emanuellima1/study-book/edit/main/{path}"
+site-url = "https://emanuellima1.github.io/study-journal/"
 
 [output.html.playground]
 editable = true
