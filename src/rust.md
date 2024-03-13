@@ -1,5 +1,15 @@
 # Notes on Rust
 
+- [Notes on Rust](#notes-on-rust)
+  - [Basics](#basics)
+  - [Importing and Namespaces](#importing-and-namespaces)
+  - [Panic, Options and Result](#panic-options-and-result)
+  - [Lifetime](#lifetime)
+  - [Memory](#memory)
+    - [Stack and Heap](#stack-and-heap)
+    - [Ownership](#ownership)
+  - [References](#references)
+
 ## Basics
 
 Rust's philosophy:

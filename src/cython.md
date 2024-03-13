@@ -1,5 +1,22 @@
 # Notes on Cython
 
+- [Notes on Cython](#notes-on-cython)
+  - [Compilation](#compilation)
+    - [Using distutils with cythonize](#using-distutils-with-cythonize)
+  - [Typing](#typing)
+    - [Typing variables](#typing-variables)
+    - [C Functions](#c-functions)
+    - [C Functions with Automatic Python Wrappers](#c-functions-with-automatic-python-wrappers)
+    - [Exception Handling](#exception-handling)
+    - [C structs, unions, enums an typedefs](#c-structs-unions-enums-an-typedefs)
+    - [Efficient Loops](#efficient-loops)
+  - [Extension Types](#extension-types)
+  - [Wrapping C++](#wrapping-c)
+  - [Profiling](#profiling)
+  - [Typed Memoryviews](#typed-memoryviews)
+  - [Parallelism](#parallelism)
+  - [References](#references)
+
 ## Compilation
 
 ### Using distutils with cythonize

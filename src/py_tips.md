@@ -1,5 +1,31 @@
 # Python Tips
 
+- [Python Tips](#python-tips)
+  - [General Project Guidance](#general-project-guidance)
+    - [Project Layout](#project-layout)
+    - [Versioning](#versioning)
+      - [PEP 440 / PyPA Guidelines](#pep-440--pypa-guidelines)
+      - [Semantic Versioning](#semantic-versioning)
+    - [Linting and Formating](#linting-and-formating)
+      - [Ruff](#ruff)
+        - [Configuration](#configuration)
+      - [PyRight](#pyright)
+  - [Modules, Libraries and Frameworks](#modules-libraries-and-frameworks)
+    - [Importing](#importing)
+    - [`sys` Module](#sys-module)
+    - [Import Paths](#import-paths)
+    - [Useful Standard Libraries](#useful-standard-libraries)
+  - [Documentation](#documentation)
+    - [Documenting API Changes](#documenting-api-changes)
+    - [Diátaxis](#diátaxis)
+    - [Generating Documentation from Docstrings](#generating-documentation-from-docstrings)
+    - [Doctesting](#doctesting)
+  - [Release Engineering](#release-engineering)
+    - [Poetry](#poetry)
+    - [Tox](#tox)
+  - [The Abstract Syntax Tree](#the-abstract-syntax-tree)
+  - [Bibliography](#bibliography)
+
 ## General Project Guidance
 
 ### Project Layout

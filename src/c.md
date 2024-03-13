@@ -1,5 +1,18 @@
 # Notes on C
 
+- [Notes on C](#notes-on-c)
+  - [Basics](#basics)
+    - [Enums](#enums)
+    - [Pointers](#pointers)
+    - [Arrays](#arrays)
+    - [Structs](#structs)
+    - [Unions](#unions)
+  - [Qualifiers](#qualifiers)
+  - [Preprocessor](#preprocessor)
+  - [Some Best Practices](#some-best-practices)
+  - [Some Headers](#some-headers)
+  - [Bibliography](#bibliography)
+
 ## Basics
 
 The minimal "hello world" C program:

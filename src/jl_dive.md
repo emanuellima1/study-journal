@@ -1,5 +1,28 @@
 # Julia Deep Dive
 
+- [Julia Deep Dive](#julia-deep-dive)
+  - [Basics](#basics)
+  - [Data Types and Structures](#data-types-and-structures)
+    - [Scalar Types](#scalar-types)
+    - [Basic Math](#basic-math)
+    - [Strings](#strings)
+    - [Arrays](#arrays)
+    - [Multidimensional and Nested Arrays](#multidimensional-and-nested-arrays)
+    - [Tuples](#tuples)
+    - [Named Tuples](#named-tuples)
+    - [Dictionaries](#dictionaries)
+    - [Sets](#sets)
+    - [Memory and Copy](#memory-and-copy)
+    - [Random Numbers](#random-numbers)
+  - [Basic Syntax](#basic-syntax)
+    - [Functions](#functions)
+  - [Custom Types](#custom-types)
+  - [I/O](#io)
+  - [Metaprogramming](#metaprogramming)
+  - [Exceptions](#exceptions)
+  - [DataFrames](#dataframes)
+  - [References](#references)
+
 ## Basics
 
 The minimal "hello world" program:
