@@ -37,13 +37,17 @@
 - [Git]()
 - [GitOps & ArgoCD]()
 - [Jenkins]()
+- [Kata Containers]()
 - [Kubernetes]()
 - [Microservices]()
 - [OpenShift]()
+- [Podman]()
 - [Release Engineering]()
 - [Serverless]()
 - [Site Reliability Engineering]()
 - [Tekton]()
+- [Terraform]()
+- [Vagrant]()
 
 -----------
 

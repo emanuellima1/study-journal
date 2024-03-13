@@ -1,6 +1,9 @@
 # Julia Deep Dive
 
+## Table of Contents
+
 - [Julia Deep Dive](#julia-deep-dive)
+  - [Table of Contents](#table-of-contents)
   - [Basics](#basics)
   - [Data Types and Structures](#data-types-and-structures)
     - [Scalar Types](#scalar-types)

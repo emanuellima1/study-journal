@@ -1,6 +1,9 @@
 # Notes on Rust
 
+## Table of Contents
+
 - [Notes on Rust](#notes-on-rust)
+  - [Table of Contents](#table-of-contents)
   - [Basics](#basics)
   - [Importing and Namespaces](#importing-and-namespaces)
   - [Panic, Options and Result](#panic-options-and-result)

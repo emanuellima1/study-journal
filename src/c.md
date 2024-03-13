@@ -1,6 +1,9 @@
 # Notes on C
 
+## Table of Contents
+
 - [Notes on C](#notes-on-c)
+  - [Table of Contents](#table-of-contents)
   - [Basics](#basics)
     - [Enums](#enums)
     - [Pointers](#pointers)

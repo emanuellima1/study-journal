@@ -1,6 +1,9 @@
 # Notes on Cython
 
+## Table of Contents
+
 - [Notes on Cython](#notes-on-cython)
+  - [Table of Contents](#table-of-contents)
   - [Compilation](#compilation)
     - [Using distutils with cythonize](#using-distutils-with-cythonize)
   - [Typing](#typing)

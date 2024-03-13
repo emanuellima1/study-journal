@@ -1,6 +1,9 @@
 # Python Tips
 
+## Table of Contents
+
 - [Python Tips](#python-tips)
+  - [Table of Contents](#table-of-contents)
   - [General Project Guidance](#general-project-guidance)
     - [Project Layout](#project-layout)
     - [Versioning](#versioning)
