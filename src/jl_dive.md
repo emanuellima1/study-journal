@@ -7,6 +7,7 @@
   - [Basics](#basics)
   - [Data Types and Structures](#data-types-and-structures)
     - [Scalar Types](#scalar-types)
+    - [Const values](#const-values)
     - [Basic Math](#basic-math)
     - [Strings](#strings)
     - [Arrays](#arrays)
@@ -23,6 +24,7 @@
   - [I/O](#io)
   - [Metaprogramming](#metaprogramming)
   - [Exceptions](#exceptions)
+  - [REPL](#repl)
   - [DataFrames](#dataframes)
   - [References](#references)
 
@@ -53,7 +55,7 @@ In the REPL, by pressing "]" you can enter the "package mode", where you can wri
 
 To use a package on a Julia script, write `using [package]` at the beginning of the script. To use a package without populating the namespace, write `import [package]`. But then, you will have to use the functions as `[package].function()`. You can also include local Julia scripts as such: `include("my_script.jl")`.
 
-I think that `using [package]` is bad practice. The best way to import a package is this:
+I think that `using [package]` is bad practice because it pollutes the namespace. The best way to import a package is this:
 
 ```julia
 # Importing the JSON package through an alias
@@ -71,7 +73,15 @@ Some built-in data types and structures of the Julia language:
 
 ### Scalar Types
 
-The usual scalar types are present: Int64, Float64, Char and Bool.
+The usual scalar types are present: Int64, UInt128, BigInt, Float64, Char and Bool.
+
+### Const values
+
+Constant values are declared as such:
+
+```julia
+const foo = 1234
+```
 
 ### Basic Math
 
@@ -181,6 +191,28 @@ Some operations on arrays:
 - `zip(a,b)`: Get (a_element, b_element) pairs. Return an iterator to tuples made of elements from each of the arguments
 
 Functions that end in '!' modify their first argument.
+
+Map applies a function to every element in the input arrays:
+
+```julia
+map(func, my_array)
+```
+
+Filter takes a collection of values, `xs`, and returns a subset, `ys`, of those
+values. The specific values from `xs` that are included in the resulting `ys` are deter-
+mined by the predicate `p`. A predicate is a function that takes some value and always returns a Boolean value:
+
+```julia
+ys = filter(p, xs)
+```
+
+Reduce takes some binary function, `g`, as the first argument, and then uses this function to combine the elements in the collection, `xs`, provided as the second argument:
+
+```julia
+y = reduce(g, xs)
+```
+
+Mapreduce can be understood as `reduce(g, map(f, xs))`.
 
 ### Multidimensional and Nested Arrays
 
@@ -310,6 +342,7 @@ convertedObj = convert(T,x)
 The typical control flow is present:
 
 ```julia
+# 1 and 5 are included on this range
 for i = 1:5
     println(i)
 end
@@ -465,6 +498,14 @@ f = i -> replace(i, "x" => "y")
 myArray = f.(myArray)
 ```
 
+Functions whose name is a singular symbol can be used on an infix or prefix form:
+
+```julia
+5 + 3
+
++(5, 3)
+```
+
 ## Custom Types
 
 There are two type operators:
@@ -614,6 +655,14 @@ function volume(region, year)
         rethrow(e)
     end
 end
+```
+
+## REPL
+
+One can load a Julia file into the REPL to experiment with it:
+
+```julia
+include("my_file.jl")
 ```
 
 ## DataFrames
