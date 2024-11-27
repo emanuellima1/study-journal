@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Cython - My Study Journal</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Cython";
+        var mkdocs_page_input_path = "cython.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Study Journal
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Programming Languages</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="" href="../bash.md">Bash</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../c/">C</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cpp/">C++</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Cython</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#compilation">Compilation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#using-distutils-with-cythonize">Using distutils with cythonize</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#typing">Typing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#typing-variables">Typing variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#c-functions">C Functions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#c-functions-with-automatic-python-wrappers">C Functions with Automatic Python Wrappers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exception-handling">Exception Handling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#c-structs-unions-enums-an-typedefs">C structs, unions, enums an typedefs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#efficient-loops">Efficient Loops</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#extension-types">Extension Types</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wrapping-c">Wrapping C++</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#profiling">Profiling</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#typed-memoryviews">Typed Memoryviews</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parallelism">Parallelism</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../go.md">Go</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../jl/">Julia</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../py/">Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rust/">Rust</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DevOps</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../ansible.md">Ansible</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../ci.md">Continuous Integration/Delivery</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../aws.md">AWS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../azure.md">Azure</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../docker.md">Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../git.md">Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../gitops.md">GitOps & ArgoCD</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../jenkins.md">Jenkins</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kata.md">Kata Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../k8s.md">Kubernetes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../micro.md">Microservices</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../openshift.md">OpenShift</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../podman.md">Podman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../re.md">Release Engineering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../serverless.md">Serverless</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../sre.md">Site Reliability Engineering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../tekton.md">Tekton</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../terraform.md">Terraform</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../sysadmin.md">System Administration</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software Engineering</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../agile.md">Agile Methods</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Study Journal</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Programming Languages</li>
+      <li class="breadcrumb-item active">Cython</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="notes-on-cython">Notes on Cython</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#notes-on-cython">Notes on Cython</a></li>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#compilation">Compilation</a><ul>
+<li><a href="#using-distutils-with-cythonize">Using distutils with cythonize</a></li>
+</ul>
+</li>
+<li><a href="#typing">Typing</a><ul>
+<li><a href="#typing-variables">Typing variables</a></li>
+<li><a href="#c-functions">C Functions</a></li>
+<li><a href="#c-functions-with-automatic-python-wrappers">C Functions with Automatic Python Wrappers</a></li>
+<li><a href="#exception-handling">Exception Handling</a></li>
+<li><a href="#c-structs-unions-enums-an-typedefs">C structs, unions, enums an typedefs</a></li>
+<li><a href="#efficient-loops">Efficient Loops</a></li>
+</ul>
+</li>
+<li><a href="#extension-types">Extension Types</a></li>
+<li><a href="#wrapping-c">Wrapping C++</a></li>
+<li><a href="#profiling">Profiling</a></li>
+<li><a href="#typed-memoryviews">Typed Memoryviews</a></li>
+<li><a href="#parallelism">Parallelism</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h2 id="compilation">Compilation</h2>
+<h3 id="using-distutils-with-cythonize">Using distutils with cythonize</h3>
+<p>Consider a <code>fib.pyx</code> Cython source code. Our goal is to use distutils to create a compiled extension module (<code>fib.so</code> on Mac OS X or Linux and <code>fib.pyd</code> on Windows). For that, we use a <code>setup.py</code> file like so:</p>
+<pre><code class="language-python">from distutils.core import setup
+from Cython.Build import cythonize
+
+setup(name='Fibonacci App',
+      ext_modules=cythonize('fib.pyx',
+                            nthreads=4,
+                            force=False,
+                            annotate=True,
+                            compiler_directives={'binding': True},
+                            language_level=&quot;3&quot;))
+</code></pre>
+<p>The arguments of the function <code>cythonize</code> can be seen <a href="https://cython.readthedocs.io/en/stable/src/userguide/source_files_and_compilation.html#cythonize-arguments">here</a>. The most important ones are explained below:</p>
+<ul>
+<li>The first argument is the name of the Cython files. It can also be a glob pattern such as <code>src/*.pyx</code>;</li>
+<li><code>nthreads</code>: The number of concurrent builds for parallel compilation (requires the multiprocessing module);</li>
+<li><code>force</code>: Forces the recompilation of the Cython modules, even if the timestamps don’t indicate that a recompilation is necessary. Default is False;</li>
+<li><code>annotate</code>: If True, will produce a HTML file for each of the .pyx or .py files compiled. The HTML file gives an indication of how much Python interaction there is in each of the source code lines, compared to plain C code. It also allows you to see the C/C++ code generated for each line of Cython code. Default is False;</li>
+<li><code>compiler_directives</code>: Allows to set compiler directives. More information <a href="https://cython.readthedocs.io/en/stable/src/userguide/source_files_and_compilation.html#compiler-directives">here</a>;</li>
+<li><code>language_level</code>: The level of the Python language. <code>3</code> is for Python 3.</li>
+</ul>
+<p>These two function calls succinctly demonstrate the two stages in the pipeline: cythonize calls the cython compiler on the .pyx source file or files, and setup compiles the generated C or C++ code into a Python extension module. A C compiler, such as <code>gcc</code>, <code>clang</code> or <code>MSVC</code> is necessary at compile time.</p>
+<p>To build on Linux and MacOS, run:</p>
+<pre><code class="language-bash">python3 setup.py build_ext --inplace
+</code></pre>
+<p>The build_ext argument is a command instructing distutils to build the Extension object or objects that the cythonize call created. The optional --inplace flag instructs distutils to place each extension module next to its respective Cython .pyx source file.</p>
+<p>On Windows:</p>
+<pre><code class="language-powershell">python setup.py build_ext --inplace --compiler=msvc
+</code></pre>
+<p>If you use setuptools instead of distutils, the default action when running <code>python3 setup.py install</code> is to create a zipped egg file which will not work with cimport for pxd files when you try to use them from a dependent package. To prevent this, include zip_safe=False in the arguments to setup().</p>
+<p>One can also set compiler options in the <code>setup.py</code>, before calling <code>cythonize()</code>, like so:</p>
+<pre><code class="language-python">from distutils.core import setup
+from Cython.Build import cythonize
+
+from Cython.Compiler import Options
+
+Options.embed = True
+
+setup(name='Fibonacci App',
+      ext_modules=cythonize('fib.pyx',
+                            nthreads=4,
+                            force=False,
+                            annotate=True,
+                            compiler_directives={'binding': True},
+                            language_level=&quot;3&quot;))
+</code></pre>
+<p>The <code>embed</code> option embeds the Python interpreter, in order to make a standalone executable. This will provide a C function which initialises the interpreter and executes the body of this module. More options <a href="https://cython.readthedocs.io/en/stable/src/userguide/source_files_and_compilation.html#compiler-options">here</a>.</p>
+<h2 id="typing">Typing</h2>
+<h3 id="typing-variables">Typing variables</h3>
+<p>Untyped dynamic variables are declared and behave exactly like Python variables:</p>
+<pre><code class="language-python">a = 42
+</code></pre>
+<p>Statically typed variables are declared like so:</p>
+<pre><code class="language-cython">cdef int a = 42
+cdef size_t len
+cdef double *p
+cdef int arr[10]
+</code></pre>
+<p>and behave like C variables.</p>
+<p>It is possible to mix both kinds of variables if there is a trivial correspondence between the types, like C and Python ints:</p>
+<pre><code class="language-cython"># C variables
+cdef int a, b, c
+
+# Calculations using a, b, and c...
+
+# Inside a Python tuple
+tuple_of_ints = (a, b, c)
+</code></pre>
+<p>In Python 3, all <code>int</code> objects have unlimited precision. When converting integral types from Python to C, Cython generates code that checks for overflow. If the C type cannot represent the Python integer, a runtime OverflowError is raised.
+A Python <code>float</code> is stored as a C <code>double</code>. Converting a Python <code>float</code> to a C <code>float</code> may truncate to 0.0 or positive or negative infinity, according to IEEE 754 conversion rules.
+The Python complex type is stored as a C struct of two doubles. Cython has float complex and double complex C-level types, which correspond to the Python complex type.</p>
+<p>We can also use <code>cdef</code> to statically declare variables with a Python type. We can do this for the built-in types like <code>list</code>, <code>tuple</code>, and <code>dict</code> and extension types like NumPy arrays:</p>
+<pre><code class="language-cython">cdef list particles, modified_particles
+cdef dict names_from_particles
+cdef str pname
+cdef set unique_particles
+</code></pre>
+<p><strong>The more static type information we provide, the better Cython can optimize the result.</strong></p>
+<h3 id="c-functions">C Functions</h3>
+<p>When used to define a function, the cdef keyword creates a function with C-calling semantics. A cdef function’s arguments and return type are typically statically typed, and they can work with C pointer objects, structs, and other C types that cannot be automatically coerced to Python types. It is helpful to think of a cdef function as a C function that is defined with Cython’s Python-like syntax.</p>
+<pre><code class="language-cython">cdef long factorial(long n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)
+</code></pre>
+<p>A function declared with <code>cdef</code> can be called by any other function (<code>def</code> or <code>cdef</code>) inside the same Cython source file. However, Cython does not allow a <code>cdef</code> function to be called from external Python code. Because of this restriction, <code>cdef</code> functions are typically used as fast auxiliary functions to help <code>def</code> functions do their job.
+If we want to use <code>factorial</code> from Python code outside of this extension module, we need a minimal def function that calls <code>factorial</code> internally:</p>
+<pre><code class="language-python">def wrap_factorial(n):
+    return factorial(n)
+</code></pre>
+<p>One limitation of this is that <code>wrap_factorial</code> and its underlying <code>factorial</code> are restricted to C integral types only, and do not have the benefit of Python’s unlimited-precision integers. This means that <code>wrap_factorial</code> gives erroneous results for arguments larger than some small value, depending on how large an <code>unsigned long</code> is on your system. We always have to be aware of the limitations of the C types.</p>
+<h3 id="c-functions-with-automatic-python-wrappers">C Functions with Automatic Python Wrappers</h3>
+<p>A <code>cpdef</code> function combines features from <code>cdef</code> and <code>def</code> functions: we get a C-only version of the function and a Python wrapper for it, both with the same name. When we call the function from Cython, we call the C-only version; when we call the function from Python, the wrapper is called.</p>
+<pre><code class="language-cython">cpdef long factorial(long n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)
+</code></pre>
+<p>A <code>cpdef</code> function has one limitation, due to the fact that it does double duty as both a Python and a C function: its arguments and return types have to be compatible with both Python and C types.</p>
+<p>Both <code>cdef</code> and <code>cpdef</code> can be given an <code>inline</code> hint that the C compiler can use or ignore, depending on the situation:</p>
+<pre><code class="language-cython">cpdef inline long factorial(long n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)
+</code></pre>
+<p>The <code>inline</code> modifier, when judiciously used, can yield performance improvements, especially for small inlined functions called in deeply nested loops, for example.</p>
+<h3 id="exception-handling">Exception Handling</h3>
+<p>A <code>def</code> function always returns some sort of PyObject pointer at the C level. This invariant allows Cython to correctly propagate exceptions from def functions without issue. Cython’s other two function types (<code>cdef</code> and <code>cpdef</code>) may return a non-Python type, which makes some other exception-indicating mechanism necessary. Example:</p>
+<pre><code class="language-cython">cpdef int divide_ints(int i, int j):
+    return i / j
+</code></pre>
+<p>To correctly propagate the exception that occurs when j is 0, Cython provides an <code>except</code> clause:</p>
+<pre><code class="language-cython">cpdef int divide_ints(int i, int j) except? -1:
+    return i / j
+</code></pre>
+<p>The <code>except? -1</code> clause allows the return value -1 to act as a possible sentinel that an exception has occurred. If <code>divide_ints</code> ever returns -1, Cython checks if the global exception state has been set, and if so, starts unwinding the stack.
+In this example we use a question mark in the <code>except</code> clause because -1 might be a valid result from <code>divide_ints</code>, in which case no exception state will be set. If there is a return value that always indicates an error has occurred without ambiguity, then the question mark can be omitted.</p>
+<h3 id="c-structs-unions-enums-an-typedefs">C structs, unions, enums an typedefs</h3>
+<p>The following C constructs:</p>
+<pre><code class="language-c">struct mycpx {
+    int a;
+    float b;
+};
+
+union uu {
+    int a;
+    short b, c;
+};
+
+enum COLORS {ORANGE, GREEN, PURPLE};
+</code></pre>
+<p>Can be declared on Cython like this:</p>
+<pre><code class="language-cython">cdef struct mycpx:
+    float real
+    float imag
+
+cdef union uu:
+    int a
+    short b, c
+
+cdef enum COLORS:
+    ORANGE, GREEN, PURPLE
+</code></pre>
+<p>We can combine <code>struct</code> and <code>union</code> declarations with <code>ctypedef</code>, which creates a new type alias for the <code>struct</code> or <code>union</code>:</p>
+<pre><code class="language-cython">ctypedef struct mycpx:
+    float real
+    float imag
+
+ctypedef union uu:
+    int a
+    short b, c
+</code></pre>
+<p>To declare and initialize:</p>
+<pre><code class="language-cython">cdef mycpx a = mycpx(3.1415, -1.0)
+
+# Or
+cdef mycpx b = mycpx(real=2.718, imag=1.618034)
+
+# Or
+cdef mycpx zz
+zz.real = 3.1415
+zz.imag = -1.0
+
+# Or, structs can be assigned from a Python dictionary (with CPython overhead):
+cdef mycpx zz = {'real': 3.1415, 'imag': -1.0}
+</code></pre>
+<h3 id="efficient-loops">Efficient Loops</h3>
+<p>Considering this Python for loop over a range:</p>
+<pre><code class="language-python">n = 100
+# ...
+for i in range(n):
+    # ...
+</code></pre>
+<p>Its cythonized version that would produce the best performing C code is:</p>
+<pre><code class="language-cython">cdef unsigned int i, n = 100
+for i in range(n):
+    # ...
+</code></pre>
+<h2 id="extension-types">Extension Types</h2>
+<p>A Python class such as:</p>
+<pre><code class="language-python">class Particle():
+    def __init__(self, m, p, v):
+        self.mass = m
+        self.position = p
+        self.velocity = v
+    def get_momentum(self):
+        return self.mass * self.velocity
+</code></pre>
+<p>Would be cythonized as:</p>
+<pre><code class="language-cython">cdef class Particle():
+    cdef double mass, position, velocity
+
+    def __init__(self, m, p, v):
+        self.mass = m
+        self.position = p
+        self.velocity = v
+    def get_momentum(self):
+        return self.mass * self.velocity
+</code></pre>
+<p>To make an attribute readonly (for a Python caller):</p>
+<pre><code class="language-cython">cdef class Particle():
+    cdef readonly double mass
+    cdef double position, velocity
+# ...
+</code></pre>
+<p><code>mass</code> will be readable and not writable by the Python caller, but <code>position</code> and <code>velocity</code> will be completely private.</p>
+<pre><code class="language-cython">cdef class Particle():
+    cdef readonly double mass
+    cdef public double position
+    cdef double velocity
+# ...
+</code></pre>
+<p>Here, <code>position</code> will be both readable and writable by the Python caller.
+If C-level allocations and deallocations must occur, then use the <code>__cinit__</code> and <code>__dealloc__</code> methods:</p>
+<pre><code class="language-cython">cdef class Matrix:
+    cdef:
+        unsigned int nrows, ncols
+        double *_matrix
+
+    def __cinit__(self, nr, nc):
+        self.nrows = nr
+        self.ncols = nc
+        self._matrix = &lt;double*&gt;malloc(nr * nc * sizeof(double))
+        if self._matrix == NULL:
+            raise MemoryError()
+
+    def __dealloc__(self):
+        if self._matrix != NULL:
+        free(self._matrix)
+</code></pre>
+<p>You can cast a Python object to a static object:</p>
+<pre><code class="language-cython"># p is a Python object that may be a Particle
+
+cdef Particle static_p = p
+
+# Or, with the possibility of segfault if p is not a particle:
+
+&lt;Particle&gt;p
+
+# Or, safelly, but with overhead:
+
+&lt;Particle?&gt;p
+</code></pre>
+<p><code>None</code> can be passed as argument for functions that receive static type. This will lead to segfaults. To protect against it:</p>
+<pre><code class="language-cython">def dispatch(Particle p not None):
+    print p.get_momentum()
+    print p.velocity
+</code></pre>
+<h2 id="wrapping-c">Wrapping C++</h2>
+<p>TODO</p>
+<h2 id="profiling">Profiling</h2>
+<p>TODO</p>
+<h2 id="typed-memoryviews">Typed Memoryviews</h2>
+<p>TODO</p>
+<h2 id="parallelism">Parallelism</h2>
+<p>TODO</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Kurt W. Smith. Cython. 1st Edition. O’Reilly.</li>
+<li><a href="https://cython.readthedocs.io/en/stable/index.html">Official Cython’s Documentation</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cpp/" class="btn btn-neutral float-left" title="C++"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../jl/" class="btn btn-neutral float-right" title="Julia">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cpp/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../jl/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

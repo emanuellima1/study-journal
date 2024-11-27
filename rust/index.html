@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Rust - My Study Journal</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Rust";
+        var mkdocs_page_input_path = "rust.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Study Journal
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Programming Languages</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="" href="../bash.md">Bash</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../c/">C</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cpp/">C++</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cython/">Cython</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../go.md">Go</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../jl/">Julia</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../py/">Python</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Rust</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#importing-and-namespaces">Importing and Namespaces</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#panic-options-and-result">Panic, Options and Result</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lifetime">Lifetime</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#memory">Memory</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#stack-and-heap">Stack and Heap</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ownership">Ownership</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DevOps</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../ansible.md">Ansible</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../ci.md">Continuous Integration/Delivery</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../aws.md">AWS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../azure.md">Azure</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../docker.md">Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../git.md">Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../gitops.md">GitOps & ArgoCD</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../jenkins.md">Jenkins</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kata.md">Kata Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../k8s.md">Kubernetes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../micro.md">Microservices</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../openshift.md">OpenShift</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../podman.md">Podman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../re.md">Release Engineering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../serverless.md">Serverless</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../sre.md">Site Reliability Engineering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../tekton.md">Tekton</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../terraform.md">Terraform</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../sysadmin.md">System Administration</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software Engineering</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../agile.md">Agile Methods</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Study Journal</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Programming Languages</li>
+      <li class="breadcrumb-item active">Rust</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="notes-on-rust">Notes on Rust</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#notes-on-rust">Notes on Rust</a></li>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#basics">Basics</a></li>
+<li><a href="#importing-and-namespaces">Importing and Namespaces</a></li>
+<li><a href="#panic-options-and-result">Panic, Options and Result</a></li>
+<li><a href="#lifetime">Lifetime</a></li>
+<li><a href="#memory">Memory</a><ul>
+<li><a href="#stack-and-heap">Stack and Heap</a></li>
+<li><a href="#ownership">Ownership</a></li>
+</ul>
+</li>
+<li><a href="#references">References</a></li>
+</ul>
+<h2 id="basics">Basics</h2>
+<p>Rust's philosophy:</p>
+<ul>
+<li>Strictly enforcing safe borrowing of data</li>
+<li>Functions, methods and closures to operate on data</li>
+<li>Tuples, structs and enums to aggregate data</li>
+<li>Pattern matching to select and destructure data</li>
+<li>Traits to define behavior on data</li>
+</ul>
+<pre><code class="language-rust">// Hello world
+fn main() {
+    println!(“Hello!”);
+}
+</code></pre>
+<p>Functions to write strings:</p>
+<ul>
+<li><code>format!</code>: write formatted text to String</li>
+<li><code>print!</code>: same as format! but the text is printed to the console (io::stdout).</li>
+<li><code>println!</code>: same as print! but a newline is appended.</li>
+<li><code>eprint!</code>: same as format! but the text is printed to the standard error (io::stderr).</li>
+<li><code>eprintln!</code>: same as eprint! but a newline is appended.</li>
+</ul>
+<p>Ways to print to stdout:</p>
+<pre><code class="language-rust">fn main() {
+    println!(“Today is {}”, 20);
+
+    // By variable
+    let name = &quot;world&quot;;
+    println!(&quot;Hello {name}!&quot;);
+
+    // By positional argument
+    println!(&quot;{0}, this is {1}. {1}, this is {0}&quot;, &quot;Alice&quot;, &quot;Bob&quot;);
+
+    // By naming the arguments
+    println!(&quot;{subject} {verb} {object}&quot;, object=&quot;the lazy dog&quot;,subject=&quot;the quick brown fox&quot;, verb=&quot;jumps over&quot;);
+
+    // By right-aligning a text with a specified width
+    println!(&quot;{number:&gt;width$}&quot;, number=1, width=6);
+
+    // By padding numbers with extra zeroes
+    println!(&quot;{number:&gt;0width$}&quot;, number=1, width=6);
+
+    // By rounding floats
+    let pi = 3.141592;
+    println!(&quot;Pi is roughly {:.3}&quot;, pi);
+}
+</code></pre>
+<p>Tests:</p>
+<pre><code class="language-rust">fn main() {
+    // Checks if x is equal to y. If not, panic.
+    assert_eq!(x, y);
+
+    // Checks if x is not equal to y. If not, panic.
+    assert_neq!(x, y);
+
+    // Checks if expression is true. If not, panic.
+    assert!(expression);
+}
+</code></pre>
+<p>Commentaries:</p>
+<pre><code class="language-rust">fn main() {
+    // Regular commentary.
+
+    /*
+        Multi-line
+        Commentary
+    */
+
+    /// Commentary that will become documentation with cargo doc --open
+    /// It accepts markdown
+    /// And can contain tests:
+    ///
+    /// ```
+    /// use my_lib::*;
+    ///
+    /// assert_eq!(3, soma(1, 2));
+    /// ```
+    pub fn soma(x: i32, y: i32) -&gt; i32
+    {
+        x + y
+    }
+}
+</code></pre>
+<p>The build system and dependency manager is called cargo:</p>
+<pre><code class="language-bash"># Creates a new project
+cargo new [name]
+
+# Create a new project without git
+cargo new --vcs=none [name]
+
+# Compiles
+cargo build
+
+# Compiles with optimizations
+cargo build --release
+
+# Checks for syntax errors
+cargo check
+
+# Compiles and executes
+cargo run
+
+# Updates the dependencies. Doesn't bump major version
+cargo update
+
+# Creates documentation
+cargo doc --open
+
+# Linting
+cargo fmt
+cargo fix
+cargo clippy
+</code></pre>
+<p>You can make Clippy pedantic by adding the following at the first line of the <code>main.rs</code> file:</p>
+<pre><code class="language-rust">#![warn(clippy::all, clippy::pedantic)]
+</code></pre>
+<p>Declaration of variables:</p>
+<pre><code class="language-rust">fn main() {
+    // Immutable variable
+    let a = 1;
+
+    // Mutable variable
+    let mut b = 2;
+
+    // Constant with type annotation
+    const CTE: u32 = 100;
+
+    // It is possible to do shadowing. The final value o x is 6
+    let x = 5;
+    let x = x + 1;
+}
+</code></pre>
+<p>For integers, we have <code>i8</code>, <code>i16</code>, <code>i32</code>, <code>i64</code>, <code>i128</code> and <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>u128</code> for unsigned. For floats, <code>f32</code> and <code>f64</code>. <code>i32</code> and <code>f64</code> are the default types.
+The usual operators are present: <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code>
+The underscore <code>_</code> means to throw away something:</p>
+<pre><code class="language-rust">// this does nothing because 42 is a constant
+let _ = 42;
+
+// this calls `get_thing` but throws away its result
+let _ = get_thing();
+
+// Starting with an underscore means the compiler  won't warn about them being unused:
+let _x = 42;
+</code></pre>
+<p>Tuples:</p>
+<pre><code class="language-rust">fn main() {
+    // Doesn't grow in size
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+
+    // Destructuring
+    let (x, y, z) = tup;
+    println!(&quot;The value of y is: {}&quot;, y);
+
+    // Destructuring only a part of it
+    let (_, _, one) = tup;
+
+    // By index
+    let five_hundred = tup.0;
+}
+</code></pre>
+<p>Arrays:</p>
+<pre><code class="language-rust">fn main() {
+    // Doesn't grow in size. All elements of the same type.
+    let a = [1, 2, 3, 4, 5];
+    let first = a[0];
+
+    // Creates an array of 5 elements, each of which is 3
+     let a = [3; 5];
+}
+</code></pre>
+<p>Structs:</p>
+<pre><code class="language-rust">// Declaration
+struct Vec2 {
+    x: f64,
+    y: f64,
+}
+
+// Initialization
+// The order does not matter, only the names do
+let v1 = Vec2 { x: 1.0, y: 3.0 };
+let v2 = Vec2 { y: 2.0, x: 4.0 };
+
+// Initializing the rest of the fields from another struct
+let v3 = Vec2 { x: 14.0, ..v2 };
+let v4 = Vec2 { ..v3 };
+
+// Destructuring
+// `x` is now 1.0, `y` is now `3.0`
+let Vec2 { x, y } = v1;
+
+// This throws away `v.y`
+let Vec2 { x, .. } = v;
+
+// A tuple struct
+struct Point2D(u32, u32);
+
+// A unit struct
+struct Unit;
+</code></pre>
+<p>Tuple structs are similar to classic structs, but their fields have no names. For accessing individual variables, the same syntax is used as with regular tuples, namely, foo.0, foo.1, and so on, starting at zero.
+Unit structs are most commonly used as markers. They're useful when you need to implement a trait on something but don't need to store any data inside it.</p>
+<pre><code class="language-rust">fn main() {
+    // Instantiate a classic struct, with named fields. Order does not matter.
+    let person = Person {
+        name: String::from(&quot;Adam&quot;),
+        likes_oranges: true,
+        age: 25
+    };
+
+    // Instantiate a tuple struct by passing the values in the same order as defined.
+    let origin = Point2D(0, 0)
+
+    // Instantiate a unit struct.
+    let unit = Unit;
+}
+</code></pre>
+<p>Functions:</p>
+<pre><code class="language-rust">fn my_function(arg1: type1, arg2: type2) -&gt; return_type
+{
+​   //body
+}
+</code></pre>
+<p>You can declare methods on your own types:</p>
+<pre><code class="language-rust">struct Number {
+    odd: bool,
+    value: i32,
+}
+
+impl Number {
+    fn is_strictly_positive(self) -&gt; bool {
+        self.value &gt; 0
+    }
+}
+</code></pre>
+<p>Traits are something multiple types can have in common. You can implement:</p>
+<ul>
+<li>One of your traits on anyone's type</li>
+<li>Anyone's trait on one of your types</li>
+<li>But not a foreign trait on a foreign type</li>
+</ul>
+<pre><code class="language-rust">struct Number {
+    odd: bool,
+    value: i32,
+}
+
+trait Signed {
+    fn is_strictly_negative(self) -&gt; bool;
+}
+
+// Our trait on our type
+impl Signed for Number {
+    fn is_strictly_negative(self) -&gt; bool {
+        self.value &lt; 0
+    }
+}
+
+// Our trait on a foreign type
+impl Signed for i32 {
+    fn is_strictly_negative(self) -&gt; bool {
+        self &lt; 0
+    }
+}
+
+// A foreign trait on our type:
+// The `Neg` trait is used to overload `-`, the unary minus operator.
+// An impl block is always for a type, so, inside that block, Self means that type.
+impl std::ops::Neg for Number {
+    type Output = Self;
+
+    fn neg(self) -&gt; Self {
+        Self {
+            value: -self.value,
+            odd: self.odd,
+        }
+    }
+}
+</code></pre>
+<p>Some traits are markers - they don't say that a type implements some methods, they say that certain things can be done with a type:</p>
+<pre><code class="language-rust">fn main() {
+    // i32 implements trait Copy (in short, i32 is Copy):
+    let a: i32 = 15;
+    let b = a; // `a` is copied
+    let c = a; // `a` is copied again
+    print_i32(a); // `a` is copied again
+
+    // The Number struct is not Copy, so this doesn't work:
+    let n = Number { odd: true, value: 51 };
+    let m = n; // `n` is moved into `m`
+    let o = n; // error: use of moved value: `n`
+
+    // It works if print_number takes an immutable reference instead:
+    print_number(&amp;n); // `n` is borrowed for the time of the call
+    print_number(&amp;n); // `n` is borrowed again
+
+    // It also works if a function takes a mutable reference - but only if our variable binding is also mut:
+    let mut m = Number { odd: true, value: 51 };
+    print_number(&amp;m);
+    invert(&amp;mut m); // `m is borrowed mutably - everything is explicit
+    print_number(&amp;m);
+}
+
+fn print_i32(x: i32) {
+    println!(&quot;x = {}&quot;, x);
+}
+
+fn print_number(n: &amp;Number) {
+    println!(&quot;{} number {}&quot;, if n.odd { &quot;odd&quot; } else { &quot;even&quot; }, n.value);
+}
+
+fn invert(n: &amp;mut Number) {
+    n.value = -n.value;
+}
+</code></pre>
+<p>Trait methods can also take self by reference or mutable reference:</p>
+<pre><code class="language-rust">impl std::clone::Clone for Number {
+    fn clone(&amp;self) -&gt; Self {
+        Self { ..*self }
+    }
+}
+
+// Marker traits like Copy have no methods:
+// `Copy` requires that `Clone` is implemented too.
+// Number values will no longer be moved, but copied.
+impl std::marker::Copy for Number {}
+
+</code></pre>
+<p>When invoking trait methods, the receiver is borrowed implicitly:</p>
+<pre><code class="language-rust">fn main() {
+    let n = Number { odd: true, value: 51 };
+    let mut m = n.clone();
+    m.value += 100;
+
+    print_number(&amp;n);
+    print_number(&amp;m);
+}
+</code></pre>
+<p>Some traits are so common, they can be implemented automatically by using the derive attribute:</p>
+<pre><code class="language-rust">#[derive(Clone, Copy)]
+struct Number {
+    odd: bool,
+    value: i32,
+}
+</code></pre>
+<p>Functions can be generic:</p>
+<pre><code class="language-rust">fn foobar&lt;T&gt;(arg: T) {
+    // do something with `arg`
+}
+
+// Multiple type parameters:
+fn foobar&lt;L, R&gt;(left: L, right: R) {
+    // do something with `left` and `right`
+}
+</code></pre>
+<p>Type parameters can have constraints:</p>
+<pre><code class="language-rust">fn print&lt;T: Display&gt;(value: T) {
+    println!(&quot;value = {}&quot;, value);
+}
+
+fn print&lt;T: Debug&gt;(value: T) {
+    println!(&quot;value = {:?}&quot;, value);
+}
+
+// Longer syntax:
+fn print&lt;T&gt;(value: T)
+where
+    T: Display,
+{
+    println!(&quot;value = {}&quot;, value);
+}
+
+// If you want multiple constraints:
+use std::fmt::Debug;
+
+fn compare&lt;T&gt;(left: T, right: T)
+where
+    T: Debug + PartialEq,
+{
+    println!(&quot;{:?} {} {:?}&quot;, left, if left == right { &quot;==&quot; } else { &quot;!=&quot; }, right);
+}
+
+fn main() {
+    compare(&quot;tea&quot;, &quot;coffee&quot;); // prints: &quot;tea&quot; != &quot;coffee&quot;
+}
+</code></pre>
+<p>Generic functions can be navigated using <code>::</code></p>
+<pre><code class="language-rust">fn main() {
+    use std::any::type_name;
+
+    // Turbofish syntax
+    println!(&quot;{}&quot;, type_name::&lt;i32&gt;()); // prints &quot;i32&quot;
+    println!(&quot;{}&quot;, type_name::&lt;(f64, char)&gt;()); // prints &quot;(f64, char)&quot;
+}
+</code></pre>
+<p>Structs can be generic:</p>
+<pre><code class="language-rust">struct Pair&lt;T&gt; {
+    a: T,
+    b: T,
+}
+
+fn print_type_name&lt;T&gt;(_val: &amp;T) {
+    println!(&quot;{}&quot;, std::any::type_name::&lt;T&gt;());
+}
+
+fn main() {
+    let p1 = Pair { a: 3, b: 9 };
+    let p2 = Pair { a: true, b: false };
+    print_type_name(&amp;p1); // prints &quot;Pair&lt;i32&gt;&quot;
+    print_type_name(&amp;p2); // prints &quot;Pair&lt;bool&gt;&quot;
+
+    // Vec is generic
+    let mut v1 = Vec::new();
+    v1.push(1);
+    let mut v2 = Vec::new();
+    v2.push(false);
+}
+</code></pre>
+<p>Enums are types that can only have some specific values</p>
+<pre><code class="language-rust">fn main() {
+    enum WebEvent {
+    // An `enum` may either be `unit-like`,
+    PageLoad,
+    PageUnload,
+
+    // like tuple structs,
+    KeyPress(char),
+    Paste(String),
+
+    // or c-like structures.
+    Click { x: i64, y: i64 },
+    }
+}
+</code></pre>
+<p>Vectors:</p>
+<pre><code class="language-rust">fn main() {
+    // Vec is generic
+    let mut v1 = Vec::new();
+    v1.push(1);
+    let mut v2 = Vec::new();
+    v2.push(false);
+
+    // Literals:
+    let v1 = vec![1, 2, 3];
+    let v2 = vec![true, false, true];
+}
+</code></pre>
+<p>Hash maps:</p>
+<p>The type <code>HashMap&lt;K, V&gt;</code> stores a mapping of keys of type K to values of type V.</p>
+<pre><code class="language-rust">fn main() {
+    use std::collections::HashMap;
+
+    let mut contacts = HashMap::new();
+
+    contacts.insert(&quot;Daniel&quot;, &quot;798-1364&quot;);
+    contacts.insert(&quot;Ashley&quot;, &quot;645-7689&quot;);
+    contacts.insert(&quot;Katie&quot;, &quot;435-8291&quot;);
+    contacts.insert(&quot;Robert&quot;, &quot;956-1745&quot;);
+
+    // Search for &quot;Daniel&quot; on contacts
+    match contacts.get(&amp;&quot;Daniel&quot;) {
+        Some(&amp;number) =&gt; println!(&quot;Calling Daniel: {}&quot;, call(number)),
+        _ =&gt; println!(&quot;Don't have Daniel's number.&quot;),
+    }
+
+    // Remove &quot;Ashley&quot; from contacts
+    contacts.remove(&amp;&quot;Ashley&quot;);
+
+    // `HashMap::iter()` returns an iterator that yields
+    // (&amp;'a key, &amp;'a value) pairs in arbitrary order.
+    for (contact, &amp;number) in contacts.iter() {
+        println!(&quot;Calling {}: {}&quot;, contact, call(number));
+    }
+}
+</code></pre>
+<p>Conditional:</p>
+<pre><code class="language-rust">if number % 4 == 0 {
+    println!(&quot;number is divisible by 4&quot;);
+} else if number % 3 == 0 {
+    println!(&quot;number is divisible by 3&quot;);
+} else if number % 2 == 0 {
+    println!(&quot;number is divisible by 2&quot;);
+} else {
+    println!(&quot;number is not divisible by 4, 3, or 2&quot;);
+}
+
+let number = if condition {
+    5
+} else {
+    6
+};
+</code></pre>
+<p>Match:</p>
+<pre><code class="language-rust">// Similar to switch in C, but more powerful
+match feeling_lucky {
+    true =&gt; 6,
+    false =&gt; 4,
+}
+
+/*******************************************************/
+struct Number {
+    odd: bool,
+    value: i32,
+}
+
+fn main() {
+    let one = Number { odd: true, value: 1 };
+    let two = Number { odd: false, value: 2 };
+    print_number(one);
+    print_number(two);
+}
+
+fn print_number(n: Number) {
+    match n {
+        Number { odd: true, value } =&gt; println!(&quot;Odd number: {}&quot;, value),
+        Number { odd: false, value } =&gt; println!(&quot;Even number: {}&quot;, value),
+    }
+}
+
+/*******************************************************/
+// A match has to be exhaustive: at least one arm needs to match.
+fn print_number(n: Number) {
+    match n {
+        Number { value: 1, .. } =&gt; println!(&quot;One&quot;),
+        Number { value: 2, .. } =&gt; println!(&quot;Two&quot;),
+        Number { value, .. } =&gt; println!(&quot;{}&quot;, value),
+        // If the last arm didn't exist, we would get a compile-time error
+    }
+}
+
+/*******************************************************/
+// _ can be used as a &quot;catch-all&quot; pattern:
+fn print_number(n: Number) {
+    match n.value {
+        1 =&gt; println!(&quot;One&quot;),
+        2 =&gt; println!(&quot;Two&quot;),
+        _ =&gt; println!(&quot;{}&quot;, n.value),
+    }
+}
+</code></pre>
+<p>Loop:</p>
+<pre><code class="language-rust">// Infinite loop
+loop {
+    // body
+}
+
+// result is 20
+let result = loop {
+    counter += 1;
+    if counter == 10 {
+        break counter * 2;
+    }
+};
+
+while number != 0 {
+    println!(&quot;{}!&quot;, number);
+    number -= 1;
+}
+
+let a = [10, 20, 30, 40, 50];
+for element in a.iter() {
+    println!(&quot;the value is: {}&quot;, element);
+}
+
+for number in (1..4).rev() {
+    println!(&quot;{}!&quot;, number);
+}
+</code></pre>
+<p>A pair of brackets declares a block, which has its own scope:</p>
+<pre><code class="language-rust">// This prints &quot;in&quot;, then &quot;out&quot;
+fn main() {
+    let x = &quot;out&quot;;
+    {
+        // this is a different `x`
+        let x = &quot;in&quot;;
+        println!(x);
+    }
+    println!(x);
+}
+</code></pre>
+<p>Blocks are also expressions, which mean they evaluate to a value.</p>
+<pre><code class="language-rust">// This:
+let x = 42;
+
+// Is equivalent to this:
+let x = { 42 };
+</code></pre>
+<p>Inside a block, there can be multiple statements:</p>
+<pre><code class="language-rust">let x = {
+    let y = 1; // First statement
+    let z = 2; // Second statement
+    y + z // This is the tail - what the whole block will evaluate to
+};
+</code></pre>
+<p>That's why "omitting the semicolon at the end of a function" is the same as
+returning.</p>
+<h2 id="importing-and-namespaces">Importing and Namespaces</h2>
+<p><code>use</code> directives can be used to "bring in scope" names from other namespace:</p>
+<pre><code class="language-rust">// std is a crate (~ a library), cmp is a module (~ a source file), and
+// min is a function:
+
+use std::cmp::min;
+let least = min(7, 1); // This is 1
+</code></pre>
+<p>Within use directives, curly brackets have another meaning: they're globs". If we want to import both min and max , we can do any of these:</p>
+<pre><code class="language-rust">// this works:
+use std::cmp::min;
+use std::cmp::max;
+
+// this also works:
+use std::cmp::{min, max};
+
+// this also works!
+use std::{cmp::min, cmp::max};
+</code></pre>
+<p>A wildcard ( * ) lets you import every symbol from a namespace:</p>
+<pre><code class="language-rust">// This brings `min` and `max` in scope, and many other things
+use std::cmp::*;
+</code></pre>
+<h2 id="panic-options-and-result">Panic, Options and Result</h2>
+<pre><code class="language-rust">// Is a macro that violently stops execution with an error message, and the file name / line number of the error
+panic!(&quot;Error message&quot;);
+
+// Option is a type that contains something, or nothing. If .unwrap() is called on it, and it contains nothing, it panics
+enum Option&lt;T&gt; {
+    None,
+    Some(T),
+}
+
+let o1: Option&lt;i32&gt; = Some(128);
+o1.unwrap(); // this is fine
+
+let o2: Option&lt;i32&gt; = None;
+o2.unwrap(); // this panics!
+
+// Result is an enum that can either contain something, or an error. It also panics when unwrapped and containing an error
+enum Result&lt;T, E&gt; {
+    Ok(T),
+    Err(E),
+}
+
+// get returns an option with the value if the index is inside of bounds
+let fruits = vec![&quot;banana&quot;, &quot;apple&quot;, &quot;coconut&quot;, &quot;orange&quot;, &quot;strawberry&quot;];
+    for index in 0..10 {
+        match fruits.get(index) {
+            Some(fruit_name) =&gt; println!(&quot;It's a delicious {}!&quot;, fruit_name),
+            None =&gt; println!(&quot;There is no fruit! :(&quot;),
+        }
+    }
+
+let number = Some(7);
+// The `if let` construct reads: &quot;if `let` destructures `number` into
+// `Some(i)`, evaluate the block (`{}`).
+if let Some(i) = number {
+    println!(&quot;Matched {:?}!&quot;, i);
+}
+</code></pre>
+<h2 id="lifetime">Lifetime</h2>
+<p>Variables have lifetimes:</p>
+<pre><code class="language-rust">fn main() {
+    // `x` doesn't exist yet
+    {
+        // `x` starts existing
+        let x = 42;
+
+        // `x_ref` starts existing - it borrows `x`
+        let x_ref = &amp;x;
+
+        println!(&quot;x = {}&quot;, x);
+
+        // `x_ref` stops existing
+        // `x` stops existing
+    }
+    // `x` no longer exists
+}
+</code></pre>
+<p>The lifetime of a reference cannot exceed the lifetime of the variable binding it borrows:</p>
+<pre><code class="language-rust">fn main() {
+    let x_ref = {
+        let x = 42;
+        &amp;x
+    };
+    println!(&quot;x_ref = {}&quot;, x_ref);
+    // error: `x` does not live long enough
+}
+</code></pre>
+<h2 id="memory">Memory</h2>
+<h3 id="stack-and-heap">Stack and Heap</h3>
+<p>Both the stack and the heap are parts of memory that are available to your code to use at runtime, but they are structured in different ways. The stack is last in, first out. Adding data is called pushing onto the stack, and removing data is called popping off the stack.
+All data stored on the stack must have a known, fixed size. Data with an unknown size at compile time or a size that might change must be stored on the heap instead. The heap is less organized: when you put data on the heap, you request a certain amount of space. The operating system finds an empty spot in the heap that is big enough, marks it as being in use, and returns a pointer, which is the address of that location. This process is
+called allocating on the heap and is sometimes abbreviated as just allocating. Pushing values onto the stack is not considered allocating. Because the pointer is a known, fixed size, you can store the pointer on the stack, but when you want the actual data, you must follow the pointer.
+Pushing to the stack is faster than allocating on the heap because the operating system never has to search for a place to store new data; that location is always at the top of the stack. Comparatively, allocating space on the heap requires more work, because the operating system must first find a big enough space to hold the data and then perform bookkeeping to prepare for the next allocation.
+When your code calls a function, the values passed into the function (including, potentially, pointers to data on the heap) and the function’s local variables get pushed onto the stack. When the function is over, those values get popped off the stack.
+The stack is the memory set aside as scratch space for a thread of execution. When a function is called, a block is reserved on the top of the stack for local variables and some bookkeeping data. When that function returns, the block becomes unused and can be used the next time a
+function is called. The stack is always reserved in a LIFO (last in first out) order; the most recently reserved block is always the next block to be freed. This makes it really simple to keep track of the stack;
+freeing a block from the stack is nothing more than adjusting one pointer.
+The heap is memory set aside for dynamic allocation. Unlike the stack, there's no enforced pattern to the allocation and deallocation of blocks from the heap; you can allocate a block at any time and free it at any time. This makes it much more complex to keep track of which parts of the heap are allocated or free at any given time; there are many custom heap allocators available to tune heap performance for different usage patterns.
+Each thread gets a stack, while there's typically only one heap for the application (although it isn't uncommon to have multiple heaps for different types of allocation).
+The OS allocates the stack for each system-level thread when the thread is created. Typically the OS is called by the language runtime to allocate the heap for the application.
+The stack is attached to a thread, so when the thread exits the stack is reclaimed. The heap is typically allocated at application startup by the runtime, and is reclaimed when the application (technically process) exits.
+The size of the stack is set when a thread is created. The size of the heap is set on application startup, but can grow as space is needed (the allocator requests more memory from the operating system).
+The stack is faster because the access pattern makes it trivial to allocate and deallocate memory from it (a pointer/integer is simply incremented or decremented), while the heap has much more complex bookkeeping involved in an allocation or deallocation. Also, each byte in the stack tends to be reused very frequently which means it tends to be mapped to the processor's cache, making it very fast. Another performance hit for the heap is that the heap, being mostly a global resource, typically has to be multi-threading safe, i.e. each allocation and deallocation needs to be - typically - synchronized with "all" other heap accesses in the program.</p>
+<h3 id="ownership">Ownership</h3>
+<p>Each value in Rust has a variable that’s called its owner. There can only be one owner at a time. When the owner goes out of scope, the value will be
+dropped.
+Copies of heap objects are shallow, meaning that a new variable is just another pointer (on the stack) to the same heap address. The first pointer becomes stale.</p>
+<pre><code class="language-rust">let s1 = String::from(&quot;Hello!&quot;);
+let s2 = s1;
+</code></pre>
+<p>Stack variables are deep copied. They have a fixed size known in compile time.  As a general rule, any group of simple scalar values can be Copy, and nothing that requires allocation or is some form of resource is Copy. Ex.: integers, floats, booleans, characters and tuples of these types.
+Passing a variable to a function will move or copy, just as assignment does:</p>
+<pre><code class="language-rust">fn main() {
+    // s comes into scope
+    let s = String::from(&quot;hello&quot;);
+
+    // s's value moves into the function and so is no
+    // longer valid here
+    takes_ownership(s);
+​
+    // x comes into scope
+    let x = 5;
+​
+    // x would move into the function, but i32 is Copy,
+    // so it’s okay to still use x afterward
+    makes_copy(x);
+}
+// Here, x goes out of scope, then s. But because s's
+// value was moved, nothing special happens.
+
+fn takes_ownership(some_string: String) {
+​    // some_string comes into scope
+    println!(&quot;{}&quot;, some_string);
+}​
+// Here, some_string goes out of scope and `drop` is
+// called. The backing memory is freed.
+
+fn makes_copy(some_integer: i32) {
+    // some_integer comes into scope
+    println!(&quot;{}&quot;, some_integer);
+}
+// Here, some_integer goes out of scope. Nothing
+// special happens.
+</code></pre>
+<p>The ownership of a variable follows the same pattern every time: assigning a value to another variable moves it. When a variable that includes data on the heap goes out of scope, the value will be cleaned up by drop unless
+the data has been moved to be owned by another variable.
+At any given time, you can have either one mutable reference or any number of immutable references. References must always be valid.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/">Rust Book</a></li>
+<li><a href="https://fasterthanli.me/articles/a-half-hour-to-learn-rust">A Half Hour to Learn Rust</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../py/" class="btn btn-neutral float-left" title="Python"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../py/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

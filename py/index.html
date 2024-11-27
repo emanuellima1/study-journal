@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Python - My Study Journal</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Python";
+        var mkdocs_page_input_path = "py.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Study Journal
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Programming Languages</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="" href="../bash.md">Bash</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../c/">C</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cpp/">C++</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cython/">Cython</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../go.md">Go</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../jl/">Julia</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Python</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#implementations">Implementations</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rust/">Rust</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DevOps</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../ansible.md">Ansible</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../ci.md">Continuous Integration/Delivery</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../aws.md">AWS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../azure.md">Azure</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../docker.md">Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../git.md">Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../gitops.md">GitOps & ArgoCD</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../jenkins.md">Jenkins</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kata.md">Kata Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../k8s.md">Kubernetes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../micro.md">Microservices</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../openshift.md">OpenShift</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../podman.md">Podman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../re.md">Release Engineering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../serverless.md">Serverless</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../sre.md">Site Reliability Engineering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../tekton.md">Tekton</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../terraform.md">Terraform</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../sysadmin.md">System Administration</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software Engineering</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../agile.md">Agile Methods</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Study Journal</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Programming Languages</li>
+      <li class="breadcrumb-item active">Python</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="notes-on-python">Notes on Python</h1>
+<p>Python is a high-level, dynamically and strongly typed, garbage-collected, general-purpose programming language. It supports multiple programming paradigms, including structured (particularly procedural), object-oriented programming, functional programming and aspect-oriented programming (including metaprogramming and metaobjects). It is often described as a "batteries included" language due to its comprehensive standard library.</p>
+<p>Python uses dynamic typing and a combination of reference counting and a cycle-detecting garbage collector for memory management. It uses dynamic name resolution (late binding), which binds method and variable names during program execution.</p>
+<p>Its design offers some support for functional programming in the Lisp tradition. It has <code>filter</code>, <code>map</code> and <code>reduce</code> functions; list comprehensions, dictionaries, sets, and generator expressions. The standard library has two modules (<code>itertools</code> and <code>functools</code>) that implement functional tools borrowed from Haskell and Standard ML.</p>
+<p>Its core philosophy is summarized in the Zen of Python (PEP 20), which includes aphorisms such as:</p>
+<ul>
+<li>Beautiful is better than ugly.</li>
+<li>Explicit is better than implicit.</li>
+<li>Simple is better than complex.</li>
+<li>Complex is better than complicated.</li>
+<li>Readability counts.</li>
+</ul>
+<h2 id="implementations">Implementations</h2>
+<p>CPython is the reference implementation of Python. It is written in C, meeting the C11 standard (beginning with Python 3.11). It compiles Python programs into an intermediate bytecode which is then executed by its virtual machine. CPython is distributed with a large standard library written in a mixture of C and native Python, and is available for many platforms.</p>
+<p>Other implementations are:</p>
+<ul>
+<li>PyPy, a fast, compliant interpreter of Python 2.7 and 3.8. Its just-in-time compiler often brings a significant speed improvement over CPython but some libraries written in C cannot be used with it.</li>
+<li>Stackless Python, a significant fork of CPython that implements microthreads; it does not use the call stack in the same way, thus allowing massively concurrent programs. PyPy also has a stackless version.</li>
+<li>Pyston, a variant of the Python runtime that uses just-in-time compilation to speed up the execution of Python programs.</li>
+<li>Cinder, a performance-oriented fork of CPython 3.8 that contains a number of optimizations, including bytecode inline caching, eager evaluation of coroutines, a method-at-a-time JIT, and an experimental bytecode compiler.</li>
+<li>Codon, that compiles a subset of statically typed Python to machine code (via LLVM) and supports native multithreading.</li>
+<li>Cython, that compiles (a superset of) Python to C. The resulting code is also usable with Python via direct C-level API calls into the Python interpreter.</li>
+<li>PyJL, that compiles/transpiles a subset of Python to "human-readable, maintainable, and high-performance Julia source code".</li>
+<li>Nuitka, that compiles Python into C.</li>
+<li>Numba, that uses LLVM to compile a subset of Python to machine code.</li>
+<li>Pythran, that compiles a subset of Python 3 to C++ 11.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../jl/" class="btn btn-neutral float-left" title="Julia"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../rust/" class="btn btn-neutral float-right" title="Rust">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../jl/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../rust/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

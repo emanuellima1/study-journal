@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>C - My Study Journal</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "C";
+        var mkdocs_page_input_path = "c.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Study Journal
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Programming Languages</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="" href="../bash.md">Bash</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">C</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#table-of-contents">Table of Contents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#enums">Enums</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pointers">Pointers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#arrays">Arrays</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#structs">Structs</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unions">Unions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#qualifiers">Qualifiers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#preprocessor">Preprocessor</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#some-best-practices">Some Best Practices</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#some-headers">Some Headers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bibliography">Bibliography</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cpp/">C++</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cython/">Cython</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../go.md">Go</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../jl/">Julia</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../py/">Python</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rust/">Rust</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">DevOps</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../ansible.md">Ansible</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../ci.md">Continuous Integration/Delivery</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../aws.md">AWS</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../azure.md">Azure</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../docker.md">Docker</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../git.md">Git</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../gitops.md">GitOps & ArgoCD</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../jenkins.md">Jenkins</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../kata.md">Kata Containers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../k8s.md">Kubernetes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../micro.md">Microservices</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../openshift.md">OpenShift</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../podman.md">Podman</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../re.md">Release Engineering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../serverless.md">Serverless</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../sre.md">Site Reliability Engineering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../tekton.md">Tekton</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../terraform.md">Terraform</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../sysadmin.md">System Administration</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software Engineering</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../agile.md">Agile Methods</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Study Journal</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Programming Languages</li>
+      <li class="breadcrumb-item active">C</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="notes-on-c">Notes on C</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#notes-on-c">Notes on C</a></li>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#basics">Basics</a><ul>
+<li><a href="#enums">Enums</a></li>
+<li><a href="#pointers">Pointers</a></li>
+<li><a href="#arrays">Arrays</a></li>
+<li><a href="#structs">Structs</a></li>
+<li><a href="#unions">Unions</a></li>
+</ul>
+</li>
+<li><a href="#qualifiers">Qualifiers</a></li>
+<li><a href="#preprocessor">Preprocessor</a></li>
+<li><a href="#some-best-practices">Some Best Practices</a></li>
+<li><a href="#some-headers">Some Headers</a></li>
+<li><a href="#bibliography">Bibliography</a></li>
+</ul>
+<h2 id="basics">Basics</h2>
+<p>The minimal "hello world" C program:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf(&quot;Hello World!\n&quot;);
+    return 0;
+}
+</code></pre>
+<p>Any position that is not listed in the initializer is set to 0. A[2] == 0.0</p>
+<p>Don’t compare to 0, false, or true. Also, all scalars have a truth value. An integer or floating point 0 will always evaluate to false.</p>
+<pre><code class="language-c">// GOOD
+bool b = true;
+if ( b ) {
+  // do something
+}
+
+// BAD
+bool b = true;
+if (( b != false ) == true ) {
+  // do something
+}
+</code></pre>
+<p>The scalar types:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Where</th>
+<th>printf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size_t</td>
+<td><stddef.h></td>
+<td>"%zu" "%zx</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Built in</td>
+<td>"%e" "%f" "%g" "%a"</td>
+</tr>
+<tr>
+<td>signed</td>
+<td>Built in</td>
+<td>"%d"</td>
+</tr>
+<tr>
+<td>unsigned</td>
+<td>Built in</td>
+<td>"%u" "%x"</td>
+</tr>
+<tr>
+<td>bool</td>
+<td><stdbool.h></td>
+<td>"%d"</td>
+</tr>
+<tr>
+<td>ptrdiff_t</td>
+<td><stddef.h></td>
+<td>"%td"</td>
+</tr>
+<tr>
+<td>char const*</td>
+<td>Built in</td>
+<td>"%s"</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Built in</td>
+<td>"%c"</td>
+</tr>
+<tr>
+<td>void*</td>
+<td>Built in</td>
+<td>"%p"</td>
+</tr>
+<tr>
+<td>unsigned char</td>
+<td>Built in</td>
+<td>"%hhu" "%02hhx"</td>
+</tr>
+</tbody>
+</table>
+<p>size_t is any integer on the interval [0, SIZE_MAX], as defined on <strong>stdint.h</strong>.</p>
+<p><strong>Best Practice</strong>: Never modify more than one object in a statement.</p>
+<p><strong>Best Practice</strong>: Never declare various pointers or arrays on the same line to avoid errors.</p>
+<p>Ternary operator:</p>
+<pre><code class="language-c">// Pattern:
+// (boolean_expression) ? if_true : if_false;
+
+size_t size_min(size_t a , size_t b) {
+    return ( a &lt; b ) ? a : b;
+}
+</code></pre>
+<p>Attention: in an expression such as <code>f(a) + g(b)</code>, there is no pre-established order specifying
+whether <code>f(a)</code> or <code>g(b)</code> is to be computed first. If either the function <code>f</code> or <code>g</code> works with side effects
+(for instance, if <code>f</code> modifies <code>b</code> behind the scenes), the outcome of the expression will depend on the
+chosen order. The same holds for function arguments:</p>
+<pre><code class="language-c">printf(&quot;%g and %g\n&quot;, f(a), f(b));
+</code></pre>
+<p><strong>Best Practice</strong>: Functions that are called inside expressions should not have side effects.</p>
+<p>Every type in C is either an object type or a function type.</p>
+<p>C is call-by-value. When you provide an argument to a function, the value of that argument is copied into a distinct variable for use within the function.</p>
+<p>Scopes can be nested, with inner and outer scopes. For example, you can have a block scope inside another block scope, and every block scope is defined within a file scope. The inner scope has access to the outer scope, but not vice versa. If you declare the same identifier in both the inner scope and an outer scope, the identifier declared in the outer scope is hidden by the identifier within the inner scope, which takes precedence. In this case, naming the identifier will refer to the object in the inner scope; the object from the outer scope is hidden and cannot be referenced by its name.</p>
+<p>Scope and lifetime are different. Scope applies to identifiers, whereas lifetime applies to objects. The scope of an identifier is the code region where the object denoted by the identifier can be accessed by its name. The lifetime of an object is the time period for which the object exists.</p>
+<p><strong>Automatic</strong> lifetimes are declared within a block or as a function parameter. The lifetime of these objects begins when the block in which they’re declared begins execution, and ends when execution of the block ends. If the block is entered recursively, a new object is created each time, each with its own storage.</p>
+<p>Objects declared in file scope have <strong>static</strong> storage duration. The lifetime of these objects is the entire execution of the program, and their stored value is initialized prior to program startup. One can use <code>static</code> to declare a variable within a block scope to have a static lifetime. These objects persist after the function has exited.</p>
+<p><strong>Best Practice</strong>: Never declare functions with an empty parameter list in C. Always use <code>void</code> in the parameter like so:</p>
+<pre><code class="language-c">int my_function(void);
+</code></pre>
+<h3 id="enums">Enums</h3>
+<p>Allows you to define a type that assigns names (enumerators) to integer values in cases with an enumerable set of constant val-
+ues.</p>
+<pre><code class="language-c">enum day { sun, mon, tue, wed, thu, fri, sat };
+enum cardinal_points { north = 0, east = 90, south = 180, west = 270 };
+enum months { jan = 1, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec };
+</code></pre>
+<h3 id="pointers">Pointers</h3>
+<pre><code class="language-c">int* ip;
+char* cp;
+void* vp;
+
+int i = 17;
+int* ip = &amp;i;
+</code></pre>
+<p>The <code>&amp;</code> operator takes the address of an object or function.
+The <code>*</code> operator converts a pointer to a type into a value of that type. It denotes indirection and operates only on pointers.</p>
+<h3 id="arrays">Arrays</h3>
+<p>A contiguously allocated sequence of objects that all have the same element type.</p>
+<pre><code class="language-c">int ia[11];
+float* afp[17];
+
+int matrix[3][5];
+</code></pre>
+<p>Initializing an array:</p>
+<pre><code class="language-c">double A[5] = {
+    [0] = 9.0,
+    [1] = 2.9,
+    [4] = 3.E+25,
+    [3] = .00007,
+};
+
+// A[2] is initialized as 0.0
+</code></pre>
+<h3 id="structs">Structs</h3>
+<p>A struct contains sequentially allocated member objects. One can reference members of a struct by using the struct member operator (<code>.</code>). If you have a pointer to a struct, you can reference its members with the struct pointer operator (<code>-&gt;</code>).</p>
+<pre><code class="language-c">typedef struct vec2 { float x, y; } vec2;
+
+vec2 v0 = {1.0f, 2.0f};
+vec2 v1 = {.x = 1.0f, .y = 2.0f};
+vec2 v2 = {.y = 2.0f};    // missing struct members are set to zero
+
+
+
+// Inside functions, runtime-variable values can be used for initialization:
+float get_x(void) {
+    return 1.0f;
+}
+
+void bla(void) {
+    vec2 v0 = { .x = get_x(), .y = 2.0f };
+}
+
+// But this doesn't work:
+vec2 v0;
+// this doesn't work
+v0 = {1.0f, 2.0f};
+// instead a type hint is needed:
+v0 = (vec2) {1.0f, 2.0f};
+</code></pre>
+<h3 id="unions">Unions</h3>
+<p>Union types are similar to structures, except that the memory used by the member objects overlaps. Unions can contain an object of one type at one time, and an object of a different type at a different time, but never both objects at the same time, and are primarily used to save memory.</p>
+<h2 id="qualifiers">Qualifiers</h2>
+<p>Types can be qualified by using one or more of the following qualifiers: const, volatile, and restrict.</p>
+<ul>
+<li><code>const</code>: not modifiable. Will be placed in read-only memory by the compiler, and any attempt to write to them will result in a runtime error.</li>
+<li><code>volatile</code>: values stored in these objects may change without the knowledge of the compiler. For example, every time the value from a real-time clock is read, it may change, even if the value has not been written to by the C program. Using a volatile-qualified type lets the compiler know that the value may change, and ensures that every access to the real-time clock
+occurs (­otherwise, an access to the real-time clock may be optimized away or replaced by a previously read and cached value).</li>
+<li><code>restrict</code>: Used to promote optimization. Objects ­indirectly accessed through a pointer frequently cannot be fully optimized because of potential aliasing, which occurs when more than one pointer refers to the same object. Aliasing can inhibit optimizations, because the compiler can’t tell if portions of an object can change values when another apparently unrelated object is modified, for example.</li>
+</ul>
+<h2 id="preprocessor">Preprocessor</h2>
+<p>Defines a macro as 0 and an empty macro:</p>
+<pre><code class="language-c">#define  __MACRO__ 0
+
+#define  __MACRO2__
+</code></pre>
+<p>Checks if a macro is defined. If it is, throws an error (the error stops the compilation):</p>
+<pre><code class="language-c">#ifdef  __MACRO__
+#error &quot;Error!&quot;
+#endif
+</code></pre>
+<p>Checks if a macro is not defined. If it isn't, defines it:</p>
+<pre><code class="language-c">#ifndef __MACRO__
+#define __MACRO__
+#endif
+</code></pre>
+<h2 id="some-best-practices">Some Best Practices</h2>
+<ul>
+<li>Enable all warnings: -Wall and -Wextra on GCC and Clang</li>
+<li>Wrap your structs in a typedef:</li>
+</ul>
+<pre><code class="language-c">typedef struct bla{
+    int a, b, c;
+} bla;
+
+// Attention: the POSIX standard reserves the ‘_t’ postfix for its own type names to prevent collisions with user types.
+</code></pre>
+<ul>
+<li>Use void to indicate that a function does not receive arguments:</li>
+</ul>
+<pre><code class="language-c">// GOOD
+void my_func(void) {
+    ...
+}
+
+// BAD
+void my_func() {
+    ...
+}
+</code></pre>
+<ul>
+<li>Don’t be afraid to pass and return structs by value:</li>
+</ul>
+<pre><code class="language-c">typedef struct float2{ float x, y; } float2;
+
+float2 addf2(float2 v0, float2 v1) {
+    return (float2) { v0.x + v1.x, v0.y + v1.y };
+}
+
+...
+float2 v0 = {1.0f, 2.0f};
+float2 v1 = {3.0f, 4.0f};
+float2 v3 = addf2(v0, v1);
+...
+
+// You can also move the initialization of the two inputs right into the function call:
+float2 v3 = addf2((float2){ 1.0f, 2.0f }, (float2){ 3.0f, 4.0f });
+</code></pre>
+<h2 id="some-headers">Some Headers</h2>
+<ul>
+<li><strong>stdint.h</strong>: defines integer types with certain widths.</li>
+<li><strong>tgmath.h</strong>: defines type generic math functions, for both real and complex numbers.</li>
+</ul>
+<h2 id="bibliography">Bibliography</h2>
+<ul>
+<li>SEACORD, Robert. Effective C: an introduction to professional C programming. No Starch Press. 2020.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cpp/" class="btn btn-neutral float-right" title="C++">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="../cpp/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
